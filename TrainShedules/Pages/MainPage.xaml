@@ -1,0 +1,51 @@
+﻿<Page x:Class="TrainShedules.Pages.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TrainShedules.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MainPage" Background="White">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel>
+                <TextBlock Margin="5 0 0 0" Foreground="Gray">Откуда</TextBlock>
+                <TextBox x:Name="tbFrom" Margin="5" Width="200" Height="30" VerticalContentAlignment="Center" FontSize="18"></TextBox>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Margin="5 0 0 0" Foreground="Gray">Куда</TextBlock>
+                <TextBox x:Name="tbWhere" Margin="5" Width="200" Height="30" VerticalContentAlignment="Center" FontSize="18"></TextBox>
+            </StackPanel>
+            <Button VerticalAlignment="Center" Padding="5" Margin="10" Background="Blue" Foreground="White" Click="Button_Click">Найти</Button>
+            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                <TextBlock FontSize="16" Margin="5">Сортировать по:</TextBlock>
+                <ComboBox x:Name="cmbSort" Margin="5" Width="150" SelectionChanged="cmbSort_SelectionChanged">
+                    <ComboBoxItem>Возрастанию даты</ComboBoxItem>
+                    <ComboBoxItem>Убыванию даты</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <ScrollViewer HorizontalAlignment="Center">
+                <ListView x:Name="lvRoutes" MouseDoubleClick="NavigateToRoutePage">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Name}" Margin="5" FontSize="18"></TextBlock>
+                                <TextBlock Text="{Binding Date}" Margin="5" FontSize="18"></TextBlock>
+                                <TextBlock Text="{Binding TimePeriod}" Margin="5" FontSize="18"></TextBlock>
+                                <TextBlock Text="{Binding StringFormat=Кол-во остановок: {0}, Path = StopCount}" Margin="5" FontSize="18"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Page>
